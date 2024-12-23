@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div style="margin-left: 5px">
+
+            <h1 style="text-align: justify; color: blue;">Create an Account</h1>
+            <br>
+
+            <div class="row row-cols-6">
+                <div class="col">
+                    {{ form.firstname(placeholder="First Name", class="form-control") }}
+                    {% for error in form.firstname.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    {{ form.lastname(placeholder="Last Name", class="form-control") }}
+                    {% for error in form.lastname.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <br>
+            <div class="row row-cols-3">
+                <div class="col">
+                    {{ form.username(placeholder="Username", class="form-control") }}
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <br>
+            <div class="row row-cols-3">
+                <div class="col">
+                    {{ form.password1(placeholder="Password", class="form-control") }}
+                    {% for error in form.password1.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <div class="row row-cols-3">
+                <div class="col">
+                    {{ form.password2(placeholder="Confirm password", class="form-control") }}
+                    {% for error in form.password2.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+
+
+            <div class="row row-cols-6">
+                <div class="col">
+                    {{ form.weight(placeholder="Weight [kg]", class="form-control") }}
+                    {% for error in form.weight.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    {{ form.height(placeholder="Height [cm]", class="form-control") }}
+                    {% for error in form.height.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row row-cols-6">
+                <div class="col">
+                    {{ form.date_of_birth(class="form-control") }}
+                    {% for error in form.date_of_birth.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    <p style="margin-bottom: 0;">Gender</p>
+                    {% for subfield in form.sex %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                            &emsp;
+                        </tr>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="col-md-2">
+                {{ form.submit(class="btn btn-primary", style="width: 300px;") }}
+            </div>
+
+
+            <br>
+            <p class="">Already have an account?
+                <a href="{{ url_for("login") }}" class="nav-item">Log in</a></p>
+
+            {% for message in get_flashed_messages() %}
+                <p style="color: red;">Error : {{ message }}</p>
+            {% endfor %}
+        </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-8">
+                <img src="/static/images/food.jpg" alt="food" width="700" height="533">
+            </div>
+
+            <div class="col-sm-4">
+                <div>
+                    <h1 style="text-align: center">Good health starts with what you eat.</h1>
+                    <hr>
+                </div>
+
+                <div>
+                    <p style="text-align: justify">Want to eat more mindfully? Track meals, learn about your habits, and
+                        reach your goals with HealthyEats.
+                    </p>
+                    <br>
+                    <p style="text-align: justify">See a breakdown of calories and nutrients, compare serving sizes, and
+                        discover how the food you
+                        eat supports your goals.</p>
+                    <br>
+                    <h1 style="text-align: center">Recipes & Inspiration</h1>
+                    <hr>
+                    <p style="text-align: justify">Find your favorite recipe by typing in just a few ingredients.</p>
+                </div>
+                <br>
+                {% if not current_user.is_authenticated %}
+                    <div>
+                        <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">START USING FOR FREE</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

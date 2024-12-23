@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <div style="text-align: center">
+                        <br>
+                        <img src="/static/images/logo.png" alt="logo" height="64" width="155">
+                        <br>
+                        <br>
+                        <h1>LOGIN</h1>
+                        <p>Please enter your username and password</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center" style="width: 400px; margin-top: 25px;">
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <div>
+                            {{ form.username(placeholder="Username", class="form-control") }}
+                            {% for error in form.username.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <br>
+                        <div>
+                            {{ form.password(placeholder="Password", class="form-control") }}
+                            {% for error in form.password.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div style="text-align: left; margin-top: 10px;">
+                            <p>{{ form.remember() }} {{ form.remember.label }}</p>
+                        </div>
+                        <p>{{ form.submit(class="btn btn-primary", style="width: 300px;") }}
+                        </p>
+                        <p style="text-align: center"><a href="{{ url_for('register') }}">Create a new Account!</a></p>
+                        {% for message in get_flashed_messages() %}
+                            <p style="color: red;">Error : {{ message }}</p>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}

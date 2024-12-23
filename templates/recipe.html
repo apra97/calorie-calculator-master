@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/static/mypage.css">
+
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col">
+            </div>
+
+            <form action="" method="post">
+
+                {{ form.hidden_tag() }}
+
+                <div class="col" align="center">
+                    {% for message in get_flashed_messages() %}
+                        <p style="color: red;">Error : {{ message }}</p>
+                    {% endfor %}
+                    <br>
+                    {{ form.products(placeholder="e.g. chocolate, flour, cacao, egg", class="form-control", style="width: 600px") }}
+
+                    {% for error in form.products.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                    <br>
+                    <p>{{ form.submit(class="btn btn-success", style="width: 300px") }}
+                    </p>
+                </div>
+                <div class="col">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="content">
+        {% for recipe in all_recipes %}
+            <div class="recipe">
+                <p><b>#{{ recipe.id }}</b></p>
+                <b>
+                    <p>{{ recipe.name }}</p>
+                </b>
+                <img src="{{ recipe.image }}" alt="Photo of food">
+                <div class="ingredients">
+                    <p>{{ recipe.ingredients|safe }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
